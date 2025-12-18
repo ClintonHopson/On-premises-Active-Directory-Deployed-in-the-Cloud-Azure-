@@ -8,9 +8,7 @@
 This tutorial outlines the implementation of on-premises Active Directory within Azure Virtual Machines.<br />
 
 
-<h2>Video Demonstration</h2>
 
-- ### [YouTube: How to Deploy on-premises Active Directory within Azure Compute](https://www.youtube.com)
 
 <h2>Environments and Technologies Used</h2>
 
@@ -109,6 +107,86 @@ This tutorial outlines the implementation of on-premises Active Directory within
 
 20th and just to be sure with power shell still open type ipconfig /all to show the DNS server info and it should be the same IP as DC-1 telling us we have connected. 
 ![1st step lets create our resource group in Azure](https://github.com/user-attachments/assets/5f5c09d0-a7a8-4e5f-b63e-c2f0ac3cc723)
+
+
+<h2>Part Two <h2> 
+Ok great, you have created the AD infrastructure Now let's actually deploy AD 
+
+Step 1 Go to your DC-1 and select Server Manager. 
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/e3856017-f456-46e1-ac00-d6466ea88e0e)
+
+2nd select add roles and features > next > next > server selection ( here there should only be on server “ dc-1 “ ) select the server then click next
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/94e87781-e8ef-479d-9118-b829e233748a)
+
+3rd in server roles > Active Directory domain services > add features > next
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/c36bf8aa-e8d9-46a2-9329-b3e3f8165c7c)
+
+4th for features and AD DS select next > confirmation ( check the box next to “ restart destination server “ and click next /ok and install once its finished select close and ok. 
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/1a968882-6000-409e-99a9-4d47e0a76d27)
+
+5th now back in server manager on top to the right there is a flag with a caution icon. Select that, then choose “ promote this server to a domain controller “ 
+
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/1e947267-c893-4a1e-836c-239239543fc6)
+
+6th now select “ add new forrest “ and name the domain “ my domain.com “ > next
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/c70e0e3d-4882-4cfb-bf94-7e6d717e988a)
+
+7th in “ domain controller options “ set the password to something you will remember. We will likely never use this > next 
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/a2c3629a-b645-45d8-805f-bd0f9f38c7bf)
+
+
+8th select next for everything , until prerequisite then install this then select next on this as well
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/fe67281a-08fe-4a8f-9b53-6375e8e93e2c)
+
+9th once that is finished being install you will be signed out give the DC a min then log back in shouldn’t take long
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/c15b734f-19b0-4fb8-8f5f-ef76d66b248b)
+
+
+10th once you are logged back into DC-1 click the start menus >windows  admin tools > Active Directory users and computers 
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/6b12401d-429a-4100-b1bb-9cd54716799c)
+
+
+11th from here right click “mydomain.com “ > new > organizational unit > and name this unit ( _EMPLOYEE ) > OK 
+
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/cd155918-bd7f-4432-847c-4dff244b880f)
+
+12th repeat the same thing again but name this organizational unit ( _ADMINS ) 
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/4e3b8450-72d2-46bf-8e65-303c2a4c338e)
+
+13th next we right click admin > new > users > and create the Jane Doe user and the user name will be jane_admin 
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/b0b2972a-c523-4782-8797-5fdefb6bfea2)
+
+14th give the user a password you will remember> next > finish 
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/1fa35893-12ae-4b7d-acf8-5ae0051ffe22)
+
+15th now we will make this account a admin > right click Jane doe > properties > member of > add 
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/5d4c2881-3488-478d-9224-60e4736f2a82)
+
+16th under ( enter the object name to select ) search domain admins > check names > ok > apply > ok unity 
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/600ebbc8-7218-47a3-9cfb-d6e059ebf97e)
+
+17th now we will add client 1 PC to the domain. On your client-1 pc right click the start  menu > settings > (rename PC advanced ) or (renaming your device for better security)  or ( advanced system setting )  
+
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/9674ffa6-fc46-4837-9935-a01d73a00386)
+
+18th now click on “ computer name tab “ > change > member of ( select Domian ) and enter “ mydomain.com” > ok  
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/034040c7-6427-4a51-a9ab-5ea8074daf44)
+
+19th now we will login to the domain with the jane_admin user
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/804905d6-4f5a-4e7c-baa3-09fb19c4a20d)
+
+20th once you have logged in the computer will need to restart. Go ahead and do this. 
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/aa7f02c1-dbed-4182-ad8b-c7321afadc7c)
+
+
+21st now back in DC-1 we will click start menu > Active directory user and computer > mydomain.com > computers > and we should see client-1 computer in here. 
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/f5313020-e0f8-4fd4-b1b4-6adab115a9af)
+
+
+22nd and for the sake of keeping things clean we will make a new organizational unit > name it _ CLIENTS > and drag our client-1 computer into it. 
+![Part 2 ok 1st ok now go to your DC-1 and select sever manager](https://github.com/user-attachments/assets/80d6ee86-f5c0-475e-856c-2e4e8354b069)
+
+
 
 
 
