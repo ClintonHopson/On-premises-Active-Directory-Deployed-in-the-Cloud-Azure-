@@ -4,49 +4,6 @@
   <img src="https://i.imgur.com/pU5A58S.png" alt="Microsoft Active Directory logo"/>
 </p>
 
-## Overview
-
-Designed, deployed, and administered an **on-premises Active Directory Domain Services (AD DS)** environment hosted in **Microsoft Azure Virtual Machines**.  
-This project simulates a real-world enterprise directory infrastructure, including domain controllers, client machines, user and group management, Group Policy enforcement, PowerShell automation, and security auditing.
-
----
-
-## Project Highlights
-
-- Deployed Azure-based infrastructure to simulate on-prem Active Directory
-- Installed and promoted a Windows Server 2022 Domain Controller
-- Joined Windows client machines to the domain
-- Created Organizational Units (OUs), users, and admin accounts
-- Automated bulk user creation using PowerShell
-- Configured Group Policy account lockout security policies
-- Validated authentication, DNS resolution, and security auditing
-
----
-
-## Technologies Used
-
-- Microsoft Azure (Virtual Machines & Networking)
-- Windows Server 2022
-- Windows 10 / Windows 11 Pro
-- Active Directory Domain Services (AD DS)
-- Group Policy Management Console (GPMC)
-- PowerShell & PowerShell ISE
-- Remote Desktop Protocol (RDP)
-
----
-
-## Skills Demonstrated
-
-- Active Directory deployment and administration
-- DNS configuration and static IP management
-- Domain controller promotion and forest creation
-- Organizational Unit (OU) design
-- User and group management
-- Role-based access control
-- PowerShell automation
-- Group Policy enforcement
-- Account lockout policy configuration
-- Security event logging and auditing
 
 ---
 
